@@ -12,7 +12,7 @@ This package contains a collection of additional phpspec matchers.
 ## Installation
 You can install the package via composer
 ```
-composer require karriere/phpspec-matchers
+composer require neilcritchell/phpspec-matchers
 ```
 
 To be able to use the matchers you need to add the following definition to your `phpspec.yml`

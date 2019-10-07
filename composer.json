@@ -7,6 +7,9 @@
         {
             "name": "Johannes Pichler",
             "email": "johannes.pichler@karriere.at"
+        },
+        {
+            "name": "Neil Critchell"
         }
     ],
     "keywords": [
@@ -18,7 +21,7 @@
     "license": "Apache-2.0",
     "require": {
         "php": ">=7.0",
-        "phpspec/phpspec": "^4.2"
+        "phpspec/phpspec": "^5.1"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^2.8",
