@@ -5,6 +5,7 @@ namespace Karriere\PhpSpecMatchers\Matchers\Json;
 use Karriere\PhpSpecMatchers\JsonUtil;
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\Matcher\Matcher;
+use PhpSpec\Wrapper\DelayedCall;
 
 class BeJsonMatcher implements Matcher
 {
@@ -31,13 +32,15 @@ class BeJsonMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function positiveMatch(string $name, $subject, array $arguments)
+    public function positiveMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if (!JsonUtil::isValidJson($subject)) {
             throw new FailureException(
                 'the return value is not a valid json string'
             );
         }
+
+        return null;
     }
 
     /**
@@ -49,13 +52,15 @@ class BeJsonMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function negativeMatch(string $name, $subject, array $arguments)
+    public function negativeMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if (JsonUtil::isValidJson($subject)) {
             throw new FailureException(
                 'the return value should not be a valid json string'
             );
         }
+
+        return null;
     }
 
     /**

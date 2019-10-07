@@ -5,6 +5,7 @@ namespace Karriere\PhpSpecMatchers\Matchers\Json;
 use Karriere\PhpSpecMatchers\JsonUtil;
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\Matcher\Matcher;
+use PhpSpec\Wrapper\DelayedCall;
 
 class HaveJsonKeyMatcher implements Matcher
 {
@@ -31,7 +32,7 @@ class HaveJsonKeyMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function positiveMatch(string $name, $subject, array $arguments)
+    public function positiveMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if (!JsonUtil::isValidJson($subject)) {
             throw new FailureException(
@@ -57,6 +58,8 @@ class HaveJsonKeyMatcher implements Matcher
             $jsonData = $jsonData[$key];
             $level++;
         }
+
+        return null;
     }
 
     /**
@@ -68,7 +71,7 @@ class HaveJsonKeyMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function negativeMatch(string $name, $subject, array $arguments)
+    public function negativeMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if (!JsonUtil::isValidJson($subject)) {
             throw new FailureException(
@@ -79,7 +82,7 @@ class HaveJsonKeyMatcher implements Matcher
         try {
             $this->positiveMatch($name, $subject, $arguments);
         } catch (FailureException $ignored) {
-            return;
+            return null;
         }
 
         throw new FailureException(

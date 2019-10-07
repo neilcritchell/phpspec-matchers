@@ -4,6 +4,7 @@ namespace Karriere\PhpSpecMatchers\Matchers;
 
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\Matcher\Matcher;
+use PhpSpec\Wrapper\DelayedCall;
 
 class RangeBetweenMatcher implements Matcher
 {
@@ -30,7 +31,7 @@ class RangeBetweenMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function positiveMatch(string $name, $subject, array $arguments)
+    public function positiveMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if (!$this->isInRange($arguments[0], $arguments[1], $subject)) {
             throw new FailureException(
@@ -42,6 +43,8 @@ class RangeBetweenMatcher implements Matcher
                 )
             );
         }
+
+        return null;
     }
 
     /**
@@ -53,7 +56,7 @@ class RangeBetweenMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function negativeMatch(string $name, $subject, array $arguments)
+    public function negativeMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if ($this->isInRange($arguments[0], $arguments[1], $subject)) {
             throw new FailureException(
@@ -65,6 +68,8 @@ class RangeBetweenMatcher implements Matcher
                 )
             );
         }
+
+        return null;
     }
 
     /**

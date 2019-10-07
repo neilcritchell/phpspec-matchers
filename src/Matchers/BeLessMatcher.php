@@ -4,6 +4,7 @@ namespace Karriere\PhpSpecMatchers\Matchers;
 
 use PhpSpec\Exception\Example\FailureException;
 use PhpSpec\Matcher\Matcher;
+use PhpSpec\Wrapper\DelayedCall;
 
 class BeLessMatcher implements Matcher
 {
@@ -32,7 +33,7 @@ class BeLessMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function positiveMatch(string $name, $subject, array $arguments)
+    public function positiveMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if ($subject >= $arguments[0]) {
             throw new FailureException(
@@ -43,6 +44,8 @@ class BeLessMatcher implements Matcher
                 )
             );
         }
+
+        return null;
     }
 
     /**
@@ -54,7 +57,7 @@ class BeLessMatcher implements Matcher
      *
      * @throws FailureException
      */
-    public function negativeMatch(string $name, $subject, array $arguments)
+    public function negativeMatch(string $name, $subject, array $arguments) : ?DelayedCall
     {
         if ($subject < $arguments[0]) {
             throw new FailureException(
@@ -65,6 +68,8 @@ class BeLessMatcher implements Matcher
                 )
             );
         }
+
+        return null;
     }
 
     /**
